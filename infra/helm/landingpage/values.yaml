@@ -1,0 +1,77 @@
+replicaCount: 2
+
+image:
+  repository: registry.synera.com.br/kubediscovery/landingpage
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: false
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 256Mi
+
+gateway:
+  enabled: true
+  gatewayName: kubediscovery-gateway
+  gatewayNamespace: envoy-gateway-system
+  sectionName: https
+  hostnames:
+    - kubediscovery.com
+    - www.kubediscovery.com
+
+landingContent:
+  enabled: false
+  mountPath: /usr/share/nginx/html
+  files:
+    index.html: |
+      <!doctype html>
+      <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Kubediscovery | Landing</title>
+        <meta name="robots" content="index,follow">
+        <link rel="stylesheet" href="./styles.css">
+      </head>
+      <body>
+        <main style="font-family: sans-serif; margin: 2rem;">
+          <h1>Kubediscovery landing page</h1>
+          <p>Substitua este conteudo pelo build final da landing em pipeline de imagem.</p>
+        </main>
+        <script src="./script.js"></script>
+      </body>
+      </html>
+    styles.css: |
+      body { background: #020617; color: #f8fafc; }
+    script.js: |
+      console.log("kubediscovery landing page");
+    robots.txt: |
+      User-agent: *
+      Allow: /
+      Sitemap: https://kubediscovery.com/sitemap.xml
+    sitemap.xml: |
+      <?xml version="1.0" encoding="UTF-8"?>
+      <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        <url>
+          <loc>https://kubediscovery.com/</loc>
+          <changefreq>weekly</changefreq>
+          <priority>1.0</priority>
+        </url>
+      </urlset>

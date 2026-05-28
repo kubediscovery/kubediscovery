@@ -1,0 +1,13 @@
+{{- if .Values.landingContent.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "landingpage.fullname" . }}-content
+  labels:
+    {{- include "landingpage.labels" . | nindent 4 }}
+data:
+  {{- range $name, $content := .Values.landingContent.files }}
+  {{ $name }}: |
+{{ $content | nindent 4 }}
+  {{- end }}
+{{- end }}
