@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kubediscovery-landingpage
+  namespace: argocd
+spec:
+  project: kubediscovery-company
+  source:
+    repoURL: https://github.com/kubediscovery/kubediscovery.git
+    targetRevision: HEAD
+    path: infra/helm/landingpage
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kubediscovery
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
