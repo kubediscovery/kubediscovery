@@ -33,7 +33,6 @@ gateway:
   gatewayNamespace: envoy-gateway
   sectionName: kubediscovery
   hostnames:
-    - kubediscovery.com
     - www.kubediscovery.com
 
 landingContent:
