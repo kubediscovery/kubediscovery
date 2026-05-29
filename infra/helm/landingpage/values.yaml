@@ -31,7 +31,7 @@ gateway:
   enabled: true
   gatewayName: https
   gatewayNamespace: envoy-gateway
-  sectionName: https
+  sectionName: kubediscovery
   hostnames:
     - kubediscovery.com
     - www.kubediscovery.com
