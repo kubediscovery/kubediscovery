@@ -25,9 +25,9 @@ resources:
 
 gateway:
   enabled: true
-  gatewayName: kubediscovery-gateway
+  gatewayName: https
   gatewayNamespace: envoy-gateway
-  sectionName: https
+  sectionName: kubediscovery
   hostnames:
     - docs.kubediscovery.com
   pathPrefix: /
